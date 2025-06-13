@@ -1,4 +1,8 @@
-require("dotenv").config();
+
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
+
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
@@ -8,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 if (!process.env.OPENAI_API_KEY) {
-    console.error("❌ OPENAI_API_KEY is missing in .env file");
+    console.error("❌ OPENAI_API_KEY is missing in environment variables");
     process.exit(1);
 }
 
