@@ -1,6 +1,9 @@
-
+// ✅ Load .env only in development
 if (process.env.NODE_ENV !== "production") {
+    console.log("🧪 Development mode: loading .env");
     require("dotenv").config();
+} else {
+    console.log("🚀 Production mode: using Railway environment variables");
 }
 
 const express = require("express");
