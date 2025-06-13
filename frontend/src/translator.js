@@ -9,10 +9,13 @@ function Translator({ darkMode }) {
   const handleTranslate = async () => {
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/translate", {
-        text,
-        targetLang: "tl",
-      });
+      const response = await axios.post(
+        "https://lakbaywika-production.up.railway.app/translate",
+        {
+          text,
+          targetLang: "tl",
+        }
+      );
       setTranslatedText(response.data.translatedText);
     } catch (error) {
       console.error("Error translating text:", error);
@@ -45,7 +48,6 @@ function Translator({ darkMode }) {
       <h1 style={{ marginBottom: "20px" }}>Tagalog Translator</h1>
 
       <div style={containerStyle}>
-       
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -53,7 +55,6 @@ function Translator({ darkMode }) {
           style={textAreaStyle}
         />
 
-     
         <textarea
           value={translatedText}
           readOnly
