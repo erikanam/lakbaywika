@@ -1,0 +1,12 @@
+# Ignore environment variables
+.env
+
+# Node dependencies
+node_modules/
+frontend/node_modules/
+
+# Optional: ignore build files
+frontend/build/
+
+# Logs
+npm-debug.log*
