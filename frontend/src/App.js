@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, Navigate } from "react-router-dom";
 import Translator from "./translator";
 import Flashcards from "./flashcard";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
+import banner from "./assets/lakbaywika.png"; // ✅ Correct image import
 
 function Homepage() {
   return (
@@ -23,12 +24,12 @@ function Navbar({ darkMode, toggleTheme }) {
   return (
     <nav style={styles.navbar}>
       <div>
-        <img src="/lakbaywika.png" alt="Lakbay Wika" style={styles.logo} />
+        <img src={banner} alt="Lakbay Wika" style={styles.logo} />
       </div>
       <ul style={styles.navLinks}>
         <li><Link to="/" style={styles.link}>PANGUNAHING PAHINA</Link></li>
         <li><Link to="/translator" style={styles.link}>PAGSASALIN</Link></li>
-        <li><Link to="/flashcards" style={styles.link}>MATUTO GAMIT ANG FLASHCARDS</Link></li>
+        <li><Link to="/flashcards" style={styles.link}>FLASHCARDS</Link></li>
       </ul>
       <button onClick={toggleTheme} style={styles.themeToggle}>
         {darkMode ? (
@@ -66,6 +67,8 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/translator" element={<Translator />} />
         <Route path="/flashcards" element={<Flashcards />} />
+        {/* Redirect unknown paths to homepage */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );
@@ -83,6 +86,7 @@ const styles = {
     alignItems: "center",
     padding: "10px 20px",
     borderBottom: "2px solid #000",
+    flexWrap: "wrap",
   },
   navLinks: {
     listStyle: "none",
