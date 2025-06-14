@@ -7,19 +7,24 @@ function Translator({ darkMode }) {
   const [loading, setLoading] = useState(false);
 
   const handleTranslate = async () => {
+    if (!text.trim()) {
+      alert("Please enter text to translate.");
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await axios.post(
         "https://lakbaywika-production.up.railway.app/translate",
         {
           text,
-          targetLang: "tl",
+          target: "tl", // ✅ Key fixed for Railway backend
         }
       );
       setTranslatedText(response.data.translatedText);
     } catch (error) {
       console.error("Error translating text:", error);
-      setTranslatedText("Translation failed.");
+      setTranslatedText("❌ Translation failed. Please try again later.");
     }
     setLoading(false);
   };
@@ -51,7 +56,7 @@ function Translator({ darkMode }) {
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="Enter Text ...."
+          placeholder="Enter Text..."
           style={textAreaStyle}
         />
 
