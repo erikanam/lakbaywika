@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/lakbaywika/static/js/main.399b58f7.js",
+    "main.js": "/lakbaywika/static/js/main.28775c41.js",
     "static/media/lakbaywika.png": "/lakbaywika/static/media/lakbaywika.673effda74fd09190173.png",
     "index.html": "/lakbaywika/index.html",
-    "main.399b58f7.js.map": "/lakbaywika/static/js/main.399b58f7.js.map"
+    "main.28775c41.js.map": "/lakbaywika/static/js/main.28775c41.js.map"
   },
   "entrypoints": [
-    "static/js/main.399b58f7.js"
+    "static/js/main.28775c41.js"
   ]
 }
