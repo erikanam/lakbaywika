@@ -1,10 +1,5 @@
-// ✅ Load .env only in development
-if (process.env.NODE_ENV !== "production") {
-    console.log("🧪 Development mode: loading .env");
-    require("dotenv").config();
-} else {
-    console.log("🚀 Production mode: using Railway environment variables");
-}
+// ✅ Always try to load .env (safe fallback for both local and Railway)
+require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
@@ -19,7 +14,7 @@ if (!process.env.OPENAI_API_KEY) {
     process.exit(1);
 }
 
-// Middleware
+// ✅ Middleware
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(morgan("dev"));
@@ -46,9 +41,7 @@ app.post("/translate", async (req, res) => {
             "https://api.openai.com/v1/chat/completions",
             {
                 model: "gpt-3.5-turbo",
-                messages: [
-                    { role: "user", content: prompt }
-                ],
+                messages: [{ role: "user", content: prompt }],
                 temperature: 0.3
             },
             {
@@ -68,8 +61,7 @@ app.post("/translate", async (req, res) => {
     }
 });
 
-// Start Server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+// ✅ Start Server
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`🚀 Server running on port ${PORT}`);
 });
-
